@@ -1,3 +1,584 @@
+<<<<<<< HEAD
+=======
+// // import { useState } from "react";
+// // import { Header } from "@/components/Header";
+// // import { HomePage } from "@/components/HomePage";
+// // import { AboutPage } from "@/components/AboutPage";
+// // import { FeaturesPage } from "@/components/FeaturesPage";
+// // import { ContactPage } from "@/components/ContactPage";
+// // import { QuestionnaireFlow } from "@/components/QuestionnaireFlow";
+
+// // type Page = "home" | "about" | "features" | "questionnaire" | "contact";
+
+// // export default function App() {
+// //   const [currentPage, setCurrentPage] = useState<Page>("home");
+
+// //   const handleNavigate = (page: string) => {
+// //     setCurrentPage(page as Page);
+// //   };
+
+// //   const handleStartQuestionnaire = () => {
+// //     setCurrentPage("questionnaire");
+// //   };
+
+// //   const handleLogoClick = () => {
+// //     setCurrentPage("home");
+// //   };
+
+// //   const renderPage = () => {
+// //     switch (currentPage) {
+// //       case "home":
+// //         return <HomePage onStartQuestionnaire={handleStartQuestionnaire} />;
+// //       case "about":
+// //         return <AboutPage />;
+// //       case "features":
+// //         return <FeaturesPage />;
+// //       case "contact":
+// //         return <ContactPage />;
+// //       case "questionnaire":
+// //         return (
+// //           <div className="pt-20">
+// //             <QuestionnaireFlow />
+// //           </div>
+// //         );
+// //       default:
+// //         return <HomePage onStartQuestionnaire={handleStartQuestionnaire} />;
+// //     }
+// //   };
+
+// //   return (
+// //     <div className="min-h-screen">
+// //       <Header 
+// //         onLogoClick={handleLogoClick}
+// //         currentPage={currentPage}
+// //         onNavigate={handleNavigate}
+// //       />
+// //       {renderPage()}
+// //     </div>
+// //   );
+// // }
+
+
+
+// // ------------------------------------------------------------------------------------------------------------------
+
+
+// import { useState, useEffect } from "react";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
+// import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+// import { ArrowRight, Brain, Sparkles, Zap, Target, Users, Shield, Clock, BarChart3, Globe, Smartphone, LogIn, UserPlus, Moon, Sun, Mail, Lock, User, ArrowLeft } from "lucide-react";
+
+// type Page = "home" | "about" | "features" | "questionnaire" | "contact" | "login" | "signup";
+
+// // Header Component
+// function Header({ onLogoClick, currentPage = "home", onNavigate, onLogin, onSignUp }: any) {
+//   const [theme, setTheme] = useState<"light" | "dark">("light");
+
+//   const navigation = [
+//     { name: "Home", id: "home" },
+//     { name: "About", id: "about" },
+//     { name: "Features", id: "features" },
+//     { name: "Questionnaire", id: "questionnaire" },
+//     { name: "Contact", id: "contact" },
+//   ];
+
+//   const toggleTheme = () => {
+//     const newTheme = theme === "light" ? "dark" : "light";
+//     setTheme(newTheme);
+//     document.documentElement.classList.toggle("dark", newTheme === "dark");
+//   };
+
+//   return (
+//     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+//       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+//         <div 
+//           className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" 
+//           onClick={onLogoClick}
+//         >
+//           <div className="h-8 w-8 bg-gradient-to-br from-primary to-primary/60 rounded-xl flex items-center justify-center">
+//             <Zap className="h-5 w-5 text-white" />
+//           </div>
+//           <div>
+//             <h1 className="text-xl font-bold text-foreground">Zealing</h1>
+//             <p className="text-xs text-muted-foreground">Intelligent Solutions</p>
+//           </div>
+//         </div>
+        
+//         <nav className="hidden lg:flex items-center gap-1">
+//           {navigation.map((item) => (
+//             <Button
+//               key={item.id}
+//               variant={currentPage === item.id ? "default" : "ghost"}
+//               size="sm"
+//               onClick={() => onNavigate?.(item.id)}
+//               className="text-sm"
+//             >
+//               {item.name}
+//             </Button>
+//           ))}
+//         </nav>
+        
+//         <div className="hidden md:flex items-center gap-3">
+//           <Button
+//             variant="ghost"
+//             size="sm"
+//             onClick={onLogin}
+//             className="text-sm gap-2"
+//           >
+//             <LogIn className="h-4 w-4" />
+//             Login
+//           </Button>
+//           <Button
+//             size="sm"
+//             onClick={onSignUp}
+//             className="text-sm gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
+//           >
+//             <UserPlus className="h-4 w-4" />
+//             Sign Up
+//           </Button>
+//           <Button
+//             variant="ghost"
+//             size="icon"
+//             onClick={toggleTheme}
+//             className="h-9 w-9"
+//           >
+//             {theme === "light" ? (
+//               <Moon className="h-4 w-4" />
+//             ) : (
+//               <Sun className="h-4 w-4" />
+//             )}
+//           </Button>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// // HomePage Component
+// function HomePage({ onStartQuestionnaire }: any) {
+//   return (
+//     <div className="min-h-screen pt-16">
+//       <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10">
+//         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)/10,transparent)]" />
+        
+//         <main className="container relative z-10 flex max-w-6xl flex-col items-center justify-center gap-12 px-4 py-16 text-center">
+//           <div className="mb-8 animate-pulse">
+//             <div className="relative">
+//               <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full animate-pulse" />
+//               <div className="relative bg-background/50 backdrop-blur-sm border-2 border-primary/20 rounded-2xl p-8 shadow-2xl">
+//                 <div className="flex items-center gap-3">
+//                   <div className="h-16 w-16 bg-gradient-to-br from-primary to-primary/60 rounded-xl flex items-center justify-center">
+//                     <Zap className="h-10 w-10 text-white" />
+//                   </div>
+//                   <div className="text-left">
+//                     <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+//                       Zealing
+//                     </h2>
+//                     <p className="text-sm text-muted-foreground">Intelligent Solutions</p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="space-y-8">
+//             <h1 className="font-serif text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+//               Unlock{" "}
+//               <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+//                 AI Insights
+//               </span>
+//               <br />with Zealing
+//             </h1>
+//             <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl leading-relaxed">
+//               Experience our intelligent questionnaire system that adapts to your needs and delivers personalized AI-driven insights.
+//             </p>
+//           </div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full">
+//             <div className="bg-card/50 backdrop-blur-sm border rounded-xl p-6 space-y-3 hover:bg-card/80 hover:scale-105 transition-all duration-300 cursor-pointer">
+//               <Zap className="h-8 w-8 text-primary mx-auto animate-bounce" />
+//               <h3 className="font-semibold text-lg">Smart Questions</h3>
+//               <p className="text-muted-foreground text-sm">Dynamic questionnaire that adapts based on your responses</p>
+//             </div>
+//             <div className="bg-card/50 backdrop-blur-sm border rounded-xl p-6 space-y-3 hover:bg-card/80 hover:scale-105 transition-all duration-300 cursor-pointer">
+//               <Brain className="h-8 w-8 text-primary mx-auto animate-bounce" style={{ animationDelay: '0.5s' }} />
+//               <h3 className="font-semibold text-lg">AI Analysis</h3>
+//               <p className="text-muted-foreground text-sm">Advanced machine learning models process your data</p>
+//             </div>
+//             <div className="bg-card/50 backdrop-blur-sm border rounded-xl p-6 space-y-3 hover:bg-card/80 hover:scale-105 transition-all duration-300 cursor-pointer">
+//               <Sparkles className="h-8 w-8 text-primary mx-auto animate-bounce" style={{ animationDelay: '1s' }} />
+//               <h3 className="font-semibold text-lg">Personalized Results</h3>
+//               <p className="text-muted-foreground text-sm">Get customized insights tailored to your specific needs</p>
+//             </div>
+//           </div>
+
+//           <div className="flex flex-col gap-4 sm:flex-row">
+//             <Button 
+//               size="lg" 
+//               className="group text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-all"
+//               onClick={onStartQuestionnaire}
+//             >
+//               <span>Start Questionnaire</span>
+//               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+//             </Button>
+//             <Button 
+//               variant="outline" 
+//               size="lg" 
+//               className="backdrop-blur-sm text-lg px-8 py-6 h-auto"
+//               onClick={onStartQuestionnaire}
+//             >
+//               Learn More
+//             </Button>
+//           </div>
+//         </main>
+//       </div>
+//     </div>
+//   );
+// }
+
+// // Login Component
+// function Login({ onBack, onSignUpClick }: any) {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [isLoading, setIsLoading] = useState(false);
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     setIsLoading(true);
+//     console.log("Login attempt:", { email, password });
+//     setTimeout(() => {
+//       setIsLoading(false);
+//     }, 2000);
+//   };
+
+//   return (
+//     <div className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary/5 via-background to-primary/10 relative overflow-hidden">
+//       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)/10,transparent)]" />
+      
+//       <div className="container mx-auto px-4 max-w-md relative z-10">
+//         <Button
+//           variant="ghost"
+//           onClick={onBack}
+//           className="mb-8 gap-2"
+//         >
+//           <ArrowLeft className="h-4 w-4" />
+//           Back to Home
+//         </Button>
+        
+//         <Card className="bg-card/50 backdrop-blur-sm border shadow-lg">
+//           <CardHeader className="space-y-1">
+//             <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
+//             <CardDescription className="text-center">
+//               Enter your credentials to access your account
+//             </CardDescription>
+//           </CardHeader>
+//           <CardContent>
+//             <form onSubmit={handleSubmit} className="space-y-4">
+//               <div className="space-y-2">
+//                 <Label htmlFor="email">Email</Label>
+//                 <div className="relative">
+//                   <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="email"
+//                     type="email"
+//                     placeholder="name@example.com"
+//                     value={email}
+//                     onChange={(e) => setEmail(e.target.value)}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="space-y-2">
+//                 <Label htmlFor="password">Password</Label>
+//                 <div className="relative">
+//                   <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="password"
+//                     type="password"
+//                     placeholder="••••••••"
+//                     value={password}
+//                     onChange={(e) => setPassword(e.target.value)}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <Button
+//                 type="submit"
+//                 className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
+//                 disabled={isLoading}
+//               >
+//                 {isLoading ? "Signing in..." : "Sign In"}
+//               </Button>
+//             </form>
+//           </CardContent>
+//           <CardFooter className="flex flex-col space-y-2">
+//             <Button variant="link" className="text-sm text-muted-foreground">
+//               Forgot your password?
+//             </Button>
+//             <div className="text-sm text-muted-foreground">
+//               Don't have an account?{" "}
+//               <Button
+//                 variant="link"
+//                 onClick={onSignUpClick}
+//                 className="p-0 h-auto font-semibold"
+//               >
+//                 Sign up
+//               </Button>
+//             </div>
+//           </CardFooter>
+//         </Card>
+//       </div>
+//     </div>
+//   );
+// }
+
+// // SignUp Component
+// function SignUp({ onBack, onLoginClick }: any) {
+//   const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     password: "",
+//     confirmPassword: ""
+//   });
+//   const [isLoading, setIsLoading] = useState(false);
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     if (formData.password !== formData.confirmPassword) {
+//       alert("Passwords don't match!");
+//       return;
+//     }
+//     setIsLoading(true);
+//     console.log("Signup attempt:", formData);
+//     setTimeout(() => {
+//       setIsLoading(false);
+//     }, 2000);
+//   };
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.id]: e.target.value
+//     });
+//   };
+
+//   return (
+//     <div className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary/5 via-background to-primary/10 relative overflow-hidden">
+//       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)/10,transparent)]" />
+      
+//       <div className="container mx-auto px-4 max-w-md relative z-10">
+//         <Button
+//           variant="ghost"
+//           onClick={onBack}
+//           className="mb-8 gap-2"
+//         >
+//           <ArrowLeft className="h-4 w-4" />
+//           Back to Home
+//         </Button>
+        
+//         <Card className="bg-card/50 backdrop-blur-sm border shadow-lg">
+//           <CardHeader className="space-y-1">
+//             <CardTitle className="text-2xl text-center">Create an account</CardTitle>
+//             <CardDescription className="text-center">
+//               Enter your information to get started with Zealing
+//             </CardDescription>
+//           </CardHeader>
+//           <CardContent>
+//             <form onSubmit={handleSubmit} className="space-y-4">
+//               <div className="space-y-2">
+//                 <Label htmlFor="name">Full Name</Label>
+//                 <div className="relative">
+//                   <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="name"
+//                     type="text"
+//                     placeholder="John Doe"
+//                     value={formData.name}
+//                     onChange={handleChange}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="space-y-2">
+//                 <Label htmlFor="email">Email</Label>
+//                 <div className="relative">
+//                   <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="email"
+//                     type="email"
+//                     placeholder="name@example.com"
+//                     value={formData.email}
+//                     onChange={handleChange}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="space-y-2">
+//                 <Label htmlFor="password">Password</Label>
+//                 <div className="relative">
+//                   <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="password"
+//                     type="password"
+//                     placeholder="••••••••"
+//                     value={formData.password}
+//                     onChange={handleChange}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <div className="space-y-2">
+//                 <Label htmlFor="confirmPassword">Confirm Password</Label>
+//                 <div className="relative">
+//                   <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+//                   <Input
+//                     id="confirmPassword"
+//                     type="password"
+//                     placeholder="••••••••"
+//                     value={formData.confirmPassword}
+//                     onChange={handleChange}
+//                     required
+//                     className="pl-10"
+//                   />
+//                 </div>
+//               </div>
+//               <Button
+//                 type="submit"
+//                 className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
+//                 disabled={isLoading}
+//               >
+//                 {isLoading ? "Creating account..." : "Create Account"}
+//               </Button>
+//             </form>
+//           </CardContent>
+//           <CardFooter>
+//             <div className="text-sm text-muted-foreground mx-auto">
+//               Already have an account?{" "}
+//               <Button
+//                 variant="link"
+//                 onClick={onLoginClick}
+//                 className="p-0 h-auto font-semibold"
+//               >
+//                 Sign in
+//               </Button>
+//             </div>
+//           </CardFooter>
+//         </Card>
+//       </div>
+//     </div>
+//   );
+// }
+
+// // Placeholder components
+// function AboutPage() {
+//   return <div className="min-h-screen pt-24 p-8 text-center">About Page</div>;
+// }
+
+// function FeaturesPage() {
+//   return <div className="min-h-screen pt-24 p-8 text-center">Features Page</div>;
+// }
+
+// function ContactPage() {
+//   return <div className="min-h-screen pt-24 p-8 text-center">Contact Page</div>;
+// }
+
+// function QuestionnaireFlow() {
+//   return <div className="min-h-screen pt-24 p-8 text-center">Questionnaire Flow</div>;
+// }
+
+// // Main App Component
+// export default function App() {
+//   const [currentPage, setCurrentPage] = useState<Page>("home");
+
+//   const handleNavigate = (page: string) => {
+//     setCurrentPage(page as Page);
+//   };
+
+//   const handleStartQuestionnaire = () => {
+//     setCurrentPage("questionnaire");
+//   };
+
+//   const handleLogoClick = () => {
+//     setCurrentPage("home");
+//   };
+
+//   const handleLogin = () => {
+//     setCurrentPage("login");
+//   };
+
+//   const handleSignUp = () => {
+//     setCurrentPage("signup");
+//   };
+
+//   const handleBackToMain = () => {
+//     setCurrentPage("home");
+//   };
+
+//   const renderPage = () => {
+//     switch (currentPage) {
+//       case "home":
+//         return <HomePage onStartQuestionnaire={handleStartQuestionnaire} />;
+//       case "about":
+//         return <AboutPage />;
+//       case "features":
+//         return <FeaturesPage />;
+//       case "contact":
+//         return <ContactPage />;
+//       case "questionnaire":
+//         return (
+//           <div className="pt-20">
+//             <QuestionnaireFlow />
+//           </div>
+//         );
+//       case "login":
+//         return (
+//           <Login 
+//             onBack={handleBackToMain}
+//             onSignUpClick={handleSignUp}
+//           />
+//         );
+//       case "signup":
+//         return (
+//           <SignUp 
+//             onBack={handleBackToMain}
+//             onLoginClick={handleLogin}
+//           />
+//         );
+//       default:
+//         return <HomePage onStartQuestionnaire={handleStartQuestionnaire} />;
+//     }
+//   };
+
+//   const showHeader = currentPage !== "login" && currentPage !== "signup";
+
+//   return (
+//     <div className="min-h-screen">
+//       {showHeader && (
+//         <Header 
+//           onLogoClick={handleLogoClick}
+//           currentPage={currentPage}
+//           onNavigate={handleNavigate}
+//           onLogin={handleLogin}
+//           onSignUp={handleSignUp}
+//         />
+//       )}
+//       {renderPage()}
+//     </div>
+//   );
+// }
+
+
+// -------------------------------------------------------------------------------------------------
+
+
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +614,13 @@ function Header({ onLogoClick, currentPage = "home", onNavigate, onLogin, onSign
           onClick={onLogoClick}
         >
           <img src="/logo.png" alt="Zealing" className="h-10 w-auto" />
+<<<<<<< HEAD
+=======
+          <div>
+            <h1 className="text-x1 font-bold text-foreground">Zealing</h1>
+            <p className="text-xs text muted-muted-foreground">Intelligent Solution</p>
+          </div>
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
         </div>
         
         <nav className="hidden lg:flex items-center gap-1">
@@ -788,6 +1376,7 @@ function ContactPage() {
   );
 }
 
+<<<<<<< HEAD
 // QuestionnaireFlow Component
 function QuestionnaireFlow() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -797,10 +1386,17 @@ function QuestionnaireFlow() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiResponse, setApiResponse] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+=======
+// QuestionnaireFlow Component (simplified version)
+function QuestionnaireFlow() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<string[]>([]);
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
 
   const questions = [
     {
       id: 1,
+<<<<<<< HEAD
       type: "text",
       question: "What's your name?",
       placeholder: "Enter your full name",
@@ -1047,16 +1643,57 @@ function QuestionnaireFlow() {
             </span>
             <span className="text-sm text-muted-foreground">
               {Math.round(progress)}% complete
+=======
+      text: "What is your primary goal?",
+      options: ["Increase Revenue", "Improve Efficiency", "Enhance Customer Experience", "Reduce Costs"]
+    },
+    {
+      id: 2,
+      text: "What is your industry?",
+      options: ["Technology", "Healthcare", "Finance", "Retail", "Other"]
+    },
+    {
+      id: 3,
+      text: "How many employees does your company have?",
+      options: ["1-10", "11-50", "51-200", "201-1000", "1000+"]
+    }
+  ];
+
+  const handleAnswer = (answer: string) => {
+    setAnswers([...answers, answer]);
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      console.log("Quiz completed!", [...answers, answer]);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)/10,transparent)]" />
+      
+      <div className="container mx-auto px-4 max-w-2xl relative z-10 py-12">
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold">Questionnaire</h2>
+            <span className="text-muted-foreground">
+              Question {currentQuestion + 1} of {questions.length}
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
             </span>
           </div>
           <div className="w-full bg-secondary rounded-full h-2">
             <div
               className="bg-primary h-2 rounded-full transition-all duration-300"
+<<<<<<< HEAD
               style={{ width: `${progress}%` }}
+=======
+              style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
             />
           </div>
         </div>
 
+<<<<<<< HEAD
         {error && (
           <Card className="mb-6 border-destructive">
             <CardContent className="flex items-center gap-2 p-4">
@@ -1144,6 +1781,36 @@ function QuestionnaireFlow() {
             </Button>
           </div>
         </div>
+=======
+        <Card className="bg-card/50 backdrop-blur-sm border shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-xl">
+              {questions[currentQuestion].text}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {questions[currentQuestion].options.map((option) => (
+                <Button
+                  key={option}
+                  variant="outline"
+                  className="w-full justify-start text-left hover:bg-primary/10"
+                  onClick={() => handleAnswer(option)}
+                >
+                  {option}
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {currentQuestion === questions.length - 1 && answers.length === questions.length && (
+          <div className="mt-8 text-center">
+            <h3 className="text-xl font-semibold mb-4">Thank you for completing the questionnaire!</h3>
+            <p className="text-muted-foreground">We're analyzing your responses...</p>
+          </div>
+        )}
+>>>>>>> 03746a3e1b8c5184b137620f7ac830a3d93a540f
       </div>
     </div>
   );
